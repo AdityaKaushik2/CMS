@@ -29,4 +29,30 @@ public class CustomerValidations {
             return planType;
         throw new CustomerException("Registration Amt.. Doesn't Match");
     }
+
+    public static int verifyUser(String email, String password, List<Customer> accounts) throws CustomerException   {
+        Customer customer = new Customer(email);
+        int index;
+        if(accounts.contains(customer)){
+            index = accounts.indexOf(customer);
+            if(accounts.get(index).getPassword().equals(password)) {
+                System.out.println("Login Success");
+                return index;
+            }
+            else
+                throw new CustomerException("Invalid Password");
+        }
+        else
+            throw new CustomerException("Invalid Email");
+    }
+    public static Customer login(String email, String password, List<Customer> accounts) throws CustomerException{
+        int index = verifyUser(email,password,accounts);
+        Customer c = accounts.get(index);
+        return c;
+    }
+
+    public static void resetPassword(String newPassword,Customer customer){
+        customer.setPassword(newPassword);
+        System.out.println("Password Reset Success");
+    }
 }

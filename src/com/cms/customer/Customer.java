@@ -24,10 +24,26 @@ public class Customer {
         this.plan = plan;
         this.customerid = ++idGeneration;
     }
+
+    public Customer(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public Customer(String email) {
         this.email = email;
     }
 
+    public String getEmail() {
+        return email;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
     @Override
     public String toString() {
         return "Customeraccount [customerid=" + customerid + ", fname=" + fname + ", lname=" + lname + ", email="
@@ -36,7 +52,6 @@ public class Customer {
     }
     @Override
     public boolean equals(Object o) {
-        System.out.println("in emails equals");
         if (o instanceof Customer) {
             // Downcasting Object o to CustomerAccount and storing it in c object of
             // CustomerAccount
