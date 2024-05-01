@@ -17,7 +17,7 @@ public class CustomerManagementSystem {
             List<Customer> accounts = new ArrayList<>();
             while (!exit) {
                 try {
-                    System.out.println("1.Enter User Details\n 2.Display AllUsers\n0.Exit");
+                    System.out.println("1.Enter User Details\n 2.Display AllUsers\n 3. To Login\n 0.Exit");
                     switch (sc.nextInt()) {
                         case 1:
                             System.out.println("Enter Customer Details\n Fname Lname Email Password RegistrationAmount DOB plan");
@@ -34,17 +34,17 @@ public class CustomerManagementSystem {
                             //log in
                             System.out.println("Enter  Email and Password");
                             Customer customer = login(sc.next(),sc.next(),accounts);
-                            System.out.println("To reset Password press 1");
+                            System.out.println("To reset Password press 1 and any other key to goto menu");
                             int n = sc.nextInt();
                             if(n == 1){
                                 System.out.println("Enter New Password");
                                 resetPassword(sc.next(),customer);
                                 System.out.println("New Details");
                                 System.out.println(customer);
+                            } else{
+                                break;
                             }
                             break;
-                        case 4:
-
                         case 0:
                             exit = true;
                             System.exit(0);
