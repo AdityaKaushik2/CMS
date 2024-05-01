@@ -1,11 +1,18 @@
 package com.cms.customer;
 
 public enum ServicePlan {
-    SILVER(1000),GOLD(2000),DIAMOND(5000),PLATINUM(10000);
 
-    private int charges;
+    SILVER(1000), GOLD(2000), DIAMOND(5000), 	PLATINUM(10000);
 
-    ServicePlan(int charges){
-        this.charges = charges;
+    private double charge;
+
+    private ServicePlan(double charge)
+    {
+        this.charge = charge;
     }
+
+    public double getPlanCharge() {
+        return charge;
+    }
+
 }

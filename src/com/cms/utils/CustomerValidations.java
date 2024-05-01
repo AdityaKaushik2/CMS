@@ -1,32 +1,32 @@
 package com.cms.utils;
 
+import com.cms.custom_exceptions.CustomerException;
 import com.cms.customer.Customer;
 import com.cms.customer.ServicePlan;
-import static com.cms.customer.Customer.getCustomerId;
 import java.time.LocalDate;
+import java.util.List;
 
 public class CustomerValidations {
-    public static Customer validateInputs(String fName,
-    String lName,
-    String password,
-    double registrationAmount,
-    String dob,
-    String plan, Customer[] customer
-)   {
-        checkDup(getCustomerId(),customer);
-        parseDate(dob);
-        return new Customer(fName,lName,password,registrationAmount,dob,plan);
+    public static Customer validateAllInputs(String fname, String lname, String email, String password, double registrationAmount,
+                                                    String dob, String Plan, List<Customer> accounts) throws CustomerException {
+        checkDuplicate(email, accounts);
+        ServicePlan plan = parseAndValidateServicePlanAndCharges(Plan, registrationAmount);
+        LocalDate birthDate = LocalDate.parse(dob);
+        return new Customer(fname, lname, email,  password, registrationAmount,
+                birthDate,  plan);
+    }
+    public static void checkDuplicate(String email, List<Customer> accounts) throws CustomerException {
+        // create customer class instance wrapping PK
+        Customer c = new Customer(email);
+        if (accounts.contains(c)) {
+            throw new CustomerException("Duplicate email");
+        }
     }
 
-    public static void checkDup(int accountId, Customer[] customer){
-
+    public static ServicePlan parseAndValidateServicePlanAndCharges(String plan, double amount) throws CustomerException {
+        ServicePlan planType =  ServicePlan.valueOf(plan.toUpperCase());
+        if(planType.getPlanCharge() == amount)
+            return planType;
+        throw new CustomerException("Registration Amt.. Doesn't Match");
     }
-    public static LocalDate parseDate(String dob) {
-        return LocalDate.parse(dob);
-    }
-    public static ServicePlan parseAndValidateAcType(String plan) {
-        return ServicePlan.valueOf(plan.toUpperCase());
-    }
-
-
 }
