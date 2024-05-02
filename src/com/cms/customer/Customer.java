@@ -47,16 +47,15 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "customerid=" + customerid +
-                ", fname='" + fname + '\'' +
-                ", lname='" + lname + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", registrationAmount=" + registrationAmount +
-                ", dob=" + dob +
-                ", plan=" + plan +
-                '}';
+        return
+                customerid + " " +
+                fname + " "+ lname  + " " +
+                 email  + " " +
+                 password  + " " +
+                 registrationAmount + " " +
+                dob + " " +
+                 plan
+                ;
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.cms.custom_exceptions.CustomerException;
 import com.cms.customer.Customer;
 import com.cms.customer.ServicePlan;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerValidations {
@@ -30,5 +31,18 @@ public class CustomerValidations {
         throw new CustomerException("Registration Amt.. Doesn't Match");
     }
 
+    public static List<Customer> populated() {
+        Customer c1 = new Customer("Aditya", "Kaushik", "Adi@gmail.com", "201204", 1000, LocalDate.parse("2002-02-02"), ServicePlan.SILVER);
+        Customer c2 = new Customer("Archit", "Kaushik", "Archit@gmail.com", "23451", 2000, LocalDate.parse("2005-01-12"), ServicePlan.GOLD);
+        Customer c3 = new Customer("Ankit", "Gupta", "Ankit@gmail.com", "123456", 5000, LocalDate.parse("2004-03-10"), ServicePlan.DIAMOND);
+        Customer c4 = new Customer("Hency", "Kashyap", "Hency@gmail.com", "654321", 10000, LocalDate.parse("2000-10-23"), ServicePlan.PLATINUM);
+        Customer c5 = new Customer("Harsh", "Vardhan", "Harsh@gmail.com", "112233", 2000, LocalDate.parse("1999-08-15"), ServicePlan.GOLD);
 
+        Customer[] customerArray = {c1, c2, c3, c4, c5};
+        List<Customer> customerList = new ArrayList<>();
+        for (Customer c : customerArray)
+            customerList.add(c);
+
+        return customerList;
+    }
 }

@@ -12,7 +12,7 @@ public class CustomerManagementSystem {
         // TODO Auto-generated method stub
         try (Scanner sc = new Scanner(System.in)) {
             boolean exit = false;
-            List<Customer> accounts = new ArrayList<>();
+            List<Customer> accounts = populated();
             while (!exit) {
                 try {
                     System.out.println("1.Enter User Details\n 2.Display AllUsers\n 3. To Login\n 4.To Unsubscribe 0.Exit");

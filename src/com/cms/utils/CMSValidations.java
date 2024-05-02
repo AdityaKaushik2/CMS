@@ -1,8 +1,6 @@
 package com.cms.utils;
-
 import com.cms.custom_exceptions.CustomerException;
 import com.cms.customer.Customer;
-
 import java.util.List;
 
 public class CMSValidations {
