@@ -1,5 +1,6 @@
 package com.cms.tester;
 
+import com.cms.custom_ordering.CustomerPlanTypeComparator;
 import com.cms.customer.Customer;
 
 import java.util.*;
@@ -16,11 +17,11 @@ public class CustomerManagementSystem {
             List<Customer> accounts = populated();
             while (!exit) {
                 try {
-                    System.out.println("1.Enter User Details" + "2.Display AllUsers" + "3. To Login " + "4.To Unsubscribe" + "5. To Sort" + "0.Exit");
+                    System.out.println("1.Enter User Details\n" + "2.Display AllUsers\n" + "3. To Login\n" + "4.To Unsubscribe\n" + "5. To Sort By Email\n" + "6. To Sort by DoB n Last Name\n" +"7. To Sort By Service Type\n" +"0.Exit");
                     switch (sc.nextInt()) {
                         case 1:
                             System.out.println(
-                                    "Enter Customer Details\n Firstname Lastname Email Password RegistrationAmount DOB plan");
+                                    "Enter Customer Details In Following Order\nFirstname Lastname Email Password RegistrationAmount DOB plan");
                             Customer c = validateAllInputs(sc.next(), sc.next(), sc.next(), sc.next(), sc.nextDouble(),
                                     sc.next(), sc.next(), accounts);
                             accounts.add(c);
@@ -49,16 +50,25 @@ public class CustomerManagementSystem {
                             System.out.println("Enter  Email and Password");
                             Customer loggedUser = verifyUser(sc.next(), sc.next(), accounts);
                             unsubscribe(loggedUser, accounts);
-                            System.out.println("User unSubscribe");
+                            System.out.println("User UnSubscribed");
                             break;
                         case 5:
+                            System.out.println("Sorting By Email");
                             Collections.sort(accounts);
                             for (Customer ca : accounts){
                                 System.out.println(ca);
                             }
                             break;
                         case 6:
+                            System.out.println("Sorting By DOB and LastName");
                             Collections.sort(accounts, new CustomerDobAndLastNameComparator());
+                            for (Customer ca : accounts){
+                                System.out.println(ca);
+                            }
+                            break;
+                        case 7:
+                            System.out.println("Sorting By Service Type");
+                            Collections.sort(accounts, new CustomerPlanTypeComparator());
                             for (Customer ca : accounts){
                                 System.out.println(ca);
                             }

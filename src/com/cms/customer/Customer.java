@@ -13,7 +13,7 @@ public class Customer implements Comparable<Customer> {
     private static int idGeneration;
 
     public Customer(String fname, String lname, String email, String password, double registrationAmount,
-                           LocalDate dob, ServicePlan plan) {
+                    LocalDate dob, ServicePlan plan) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
@@ -24,32 +24,8 @@ public class Customer implements Comparable<Customer> {
         this.customerid = ++idGeneration;
     }
 
-    public String getLname() {
-        return lname;
-    }
-
-    public Customer(String email, String password) {
+    public Customer(String email){
         this.email = email;
-        this.password = password;
-    }
-
-    public Customer(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password){
-        this.password = password;
-    }
-
-    public LocalDate getDob(){
-        return dob;
     }
     @Override
     public String toString() {
@@ -85,6 +61,62 @@ public class Customer implements Comparable<Customer> {
             return 1;
         }
         return 0;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public double getRegistrationAmount() {
+        return registrationAmount;
+    }
+
+    public void setRegistrationAmount(double registrationAmount) {
+        this.registrationAmount = registrationAmount;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public ServicePlan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(ServicePlan plan) {
+        this.plan = plan;
     }
 }
 
