@@ -17,12 +17,15 @@ public class CMSValidations {
             throw new CustomerException("Wrong Password");
         }
         else{
-            throw new CustomerException("Invalid Email");
+            throw new CustomerException("Invalid Credentials");
         }
     }
     public static void resetPassword(String newPassword,Customer customer){
         customer.setPassword(newPassword);
         System.out.println("Password Reset Success");
     }
-
+    public static void unsubscribe(Customer customer, List<Customer> accounts)
+    {
+        accounts.remove(customer);
+    }
 }

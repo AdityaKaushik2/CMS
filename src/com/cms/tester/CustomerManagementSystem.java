@@ -15,7 +15,7 @@ public class CustomerManagementSystem {
             List<Customer> accounts = new ArrayList<>();
             while (!exit) {
                 try {
-                    System.out.println("1.Enter User Details\n 2.Display AllUsers\n 3. To Login\n 4.To change Password 0.Exit");
+                    System.out.println("1.Enter User Details\n 2.Display AllUsers\n 3. To Login\n 4.To Unsubscribe 0.Exit");
                     switch (sc.nextInt()) {
                         case 1:
                             System.out.println(
@@ -42,6 +42,13 @@ public class CustomerManagementSystem {
                                 System.out.println("New Details");
                                 System.out.println(newUser);
                             }
+                            break;
+                        case 4:
+                            //UnSubscribe
+                            System.out.println("Enter  Email and Password");
+                            Customer loggedUser = verifyUser(sc.next(), sc.next(), accounts);
+                            unsubscribe(loggedUser, accounts);
+                            System.out.println("User unSubscribe");
                             break;
                         case 0:
                             exit = true;
