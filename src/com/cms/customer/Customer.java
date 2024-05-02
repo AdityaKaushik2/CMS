@@ -1,8 +1,7 @@
 package com.cms.customer;
 
 import java.time.LocalDate;
-
-public class Customer {
+public class Customer implements Comparable<Customer> {
     private int customerid;
     private String fname;
     private String lname;
@@ -25,6 +24,10 @@ public class Customer {
         this.customerid = ++idGeneration;
     }
 
+    public String getLname() {
+        return lname;
+    }
+
     public Customer(String email, String password) {
         this.email = email;
         this.password = password;
@@ -45,6 +48,9 @@ public class Customer {
         this.password = password;
     }
 
+    public LocalDate getDob(){
+        return dob;
+    }
     @Override
     public String toString() {
         return
@@ -68,6 +74,17 @@ public class Customer {
             return this.email.equals(c.email);
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Customer o) {
+        if (this.email.compareTo(o.email) < 0) {
+            return -1;
+        }
+        if (this.email.compareTo(o.email) > 0) {
+            return 1;
+        }
+        return 0;
     }
 }
 

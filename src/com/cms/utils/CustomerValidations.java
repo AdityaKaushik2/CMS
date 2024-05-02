@@ -37,8 +37,9 @@ public class CustomerValidations {
         Customer c3 = new Customer("Ankit", "Gupta", "Ankit@gmail.com", "123456", 5000, LocalDate.parse("2004-03-10"), ServicePlan.DIAMOND);
         Customer c4 = new Customer("Hency", "Kashyap", "Hency@gmail.com", "654321", 10000, LocalDate.parse("2000-10-23"), ServicePlan.PLATINUM);
         Customer c5 = new Customer("Harsh", "Vardhan", "Harsh@gmail.com", "112233", 2000, LocalDate.parse("1999-08-15"), ServicePlan.GOLD);
+        Customer c6 = new Customer("ABC", "Aditya", "Harsh@gmail.com", "112233", 2000, LocalDate.parse("1999-08-15"), ServicePlan.GOLD);
 
-        Customer[] customerArray = {c1, c2, c3, c4, c5};
+        Customer[] customerArray = {c1, c2, c3, c4, c5,c6};
         List<Customer> customerList = new ArrayList<>();
         for (Customer c : customerArray)
             customerList.add(c);
