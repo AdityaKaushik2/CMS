@@ -14,7 +14,7 @@ public class Customer {
     private static int idGeneration;
 
     public Customer(String fname, String lname, String email, String password, double registrationAmount,
-                           LocalDate dob, ServicePlan Plan) {
+                           LocalDate dob, ServicePlan plan) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
@@ -44,12 +44,21 @@ public class Customer {
     public void setPassword(String password){
         this.password = password;
     }
+
     @Override
     public String toString() {
-        return "Customeraccount [customerid=" + customerid + ", fname=" + fname + ", lname=" + lname + ", email="
-                + email + ", password=" + password + ", registrationAmount=" + registrationAmount + ", dob=" + dob
-                + ", plan=" + plan + "]";
+        return "Customer{" +
+                "customerid=" + customerid +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", registrationAmount=" + registrationAmount +
+                ", dob=" + dob +
+                ", plan=" + plan +
+                '}';
     }
+
     @Override
     public boolean equals(Object o) {
         if (o instanceof Customer) {

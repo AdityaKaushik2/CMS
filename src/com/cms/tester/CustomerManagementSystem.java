@@ -1,12 +1,10 @@
 package com.cms.tester;
 
 import com.cms.customer.Customer;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+import static com.cms.utils.CMSValidations.*;
 import static com.cms.utils.CustomerValidations.*;
 
 public class CustomerManagementSystem {
@@ -17,32 +15,32 @@ public class CustomerManagementSystem {
             List<Customer> accounts = new ArrayList<>();
             while (!exit) {
                 try {
-                    System.out.println("1.Enter User Details\n 2.Display AllUsers\n 3. To Login\n 0.Exit");
+                    System.out.println("1.Enter User Details\n 2.Display AllUsers\n 3. To Login\n 4.To change Password 0.Exit");
                     switch (sc.nextInt()) {
                         case 1:
-                            System.out.println("Enter Customer Details\n Fname Lname Email Password RegistrationAmount DOB plan");
-                            Customer c = validateAllInputs(sc.next(), sc.next(), sc.next(), sc.next(), sc.nextDouble(), sc.next(), sc.next(),accounts);
+                            System.out.println(
+                                    "Enter Customer Details\n Firstname Lastname Email Password RegistrationAmount DOB plan");
+                            Customer c = validateAllInputs(sc.next(), sc.next(), sc.next(), sc.next(), sc.nextDouble(),
+                                    sc.next(), sc.next(), accounts);
                             accounts.add(c);
                             break;
                         case 2:
-                            //Display All Users
+                            // Display All Users
                             for (Customer customerAccount : accounts) {
                                 System.out.println(customerAccount);
                             }
                             break;
                         case 3:
-                            //log in
+                            // log in
                             System.out.println("Enter  Email and Password");
-                            Customer customer = login(sc.next(),sc.next(),accounts);
+                            Customer newUser = verifyUser(sc.next(), sc.next(), accounts);
                             System.out.println("To reset Password press 1 and any other key to goto menu");
                             int n = sc.nextInt();
                             if(n == 1){
                                 System.out.println("Enter New Password");
-                                resetPassword(sc.next(),customer);
+                                resetPassword(sc.next(),newUser);
                                 System.out.println("New Details");
-                                System.out.println(customer);
-                            } else{
-                                break;
+                                System.out.println(newUser);
                             }
                             break;
                         case 0:
@@ -50,7 +48,6 @@ public class CustomerManagementSystem {
                             System.exit(0);
                     }
                 } catch (Exception e) {
-                    // TODO: handle exception
                     System.out.println(e.getMessage());
                     sc.nextLine();
                 }
