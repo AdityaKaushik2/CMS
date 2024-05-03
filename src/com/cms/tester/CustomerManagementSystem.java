@@ -34,8 +34,8 @@ public class CustomerManagementSystem {
                             break;
                         case 3:
                             // log in
-                            System.out.println("Enter  Email and Password");
-                            Customer newUser = verifyUser(sc.next(), sc.next(), accounts);
+                            System.out.println("Enter  Email and Password and dob");
+                            Customer newUser = verifyUser(sc.next(), sc.next(), sc.next(),accounts);
                             System.out.println("To reset Password press 1 and any other key to goto menu");
                             int n = sc.nextInt();
                             if (n == 1) {
@@ -47,15 +47,15 @@ public class CustomerManagementSystem {
                             break;
                         case 4:
                             //UnSubscribe
-                            System.out.println("Enter  Email and Password");
-                            Customer loggedUser = verifyUser(sc.next(), sc.next(), accounts);
+                            System.out.println("Enter  Email and Password and dob");
+                            Customer loggedUser = verifyUser(sc.next(), sc.next(), sc.next(), accounts);
                             unsubscribe(loggedUser, accounts);
                             System.out.println("User UnSubscribed");
                             break;
                         case 5:
                             System.out.println("Sorting By Email");
                             Collections.sort(accounts);
-                            for (Customer ca : accounts){
+                            for (Customer ca : accounts) {
                                 System.out.println(ca);
                             }
                             break;
@@ -72,6 +72,10 @@ public class CustomerManagementSystem {
                             for (Customer ca : accounts){
                                 System.out.println(ca);
                             }
+                            break;
+                        case 8:
+                            System.out.println("Enter DOB and Plan");
+                            delUser(sc.next(),sc.next(),accounts);
                             break;
                         case 0:
                             exit = true;

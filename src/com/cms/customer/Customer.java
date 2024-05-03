@@ -24,9 +24,12 @@ public class Customer implements Comparable<Customer> {
         this.customerid = ++idGeneration;
     }
 
-    public Customer(String email){
+    //Primary Key Checking Constructor
+    public Customer(String email, LocalDate dob) {
         this.email = email;
+        this.dob= dob;
     }
+
     @Override
     public String toString() {
         return
@@ -47,7 +50,7 @@ public class Customer implements Comparable<Customer> {
             // CustomerAccount
             Customer c = (Customer) o;
             // invoker's object email = this.email
-            return this.email.equals(c.email);
+            return this.email.equals(c.email) && this.getDob().equals(dob);
         }
         return false;
     }

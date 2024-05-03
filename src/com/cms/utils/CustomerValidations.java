@@ -11,17 +11,19 @@ import java.util.List;
 public class CustomerValidations {
     public static Customer validateAllInputs(String fname, String lname, String email, String password, double registrationAmount,
                                                     String dob, String Plan, List<Customer> accounts) throws CustomerException {
-        checkDuplicate(email, accounts);
+
+        checkDuplicate(email,dob,accounts);
         checkPassword(password);
-        ServicePlan plan = parseAndValidateServicePlanAndCharges(Plan, registrationAmount);
         LocalDate birthDate = LocalDate.parse(dob);
+        ServicePlan plan = parseAndValidateServicePlanAndCharges(Plan, registrationAmount);
         checkAge(birthDate);
         return new Customer(fname, lname, email,  password, registrationAmount,
                 birthDate,  plan);
     }
-    public static void checkDuplicate(String email, List<Customer> accounts) throws CustomerException {
+    public static void checkDuplicate(String email, String dob, List<Customer> accounts) throws CustomerException {
         // create customer class instance wrapping PK
-        Customer c = new Customer(email);
+        LocalDate date = LocalDate.parse(dob);
+        Customer c = new Customer(email,date);
         if (accounts.contains(c)) {
             throw new CustomerException("Duplicate email");
         }
@@ -35,7 +37,6 @@ public class CustomerValidations {
     public static void checkAge(LocalDate dob) throws CustomerException{
         LocalDate current = LocalDate.now();
         Period age = Period.between(dob,current);
-
         if(age.getYears() < 18)
             throw new CustomerException("Age Must be above 18");
     }
@@ -53,7 +54,6 @@ public class CustomerValidations {
         Customer c4 = new Customer("Hency", "Kashyap", "Hency@gmail.com", "654321", 10000, LocalDate.parse("2000-10-23"), ServicePlan.PLATINUM);
         Customer c5 = new Customer("Harsh", "Vardhan", "Harsh@gmail.com", "112233", 2000, LocalDate.parse("1999-08-15"), ServicePlan.GOLD);
         Customer c6 = new Customer("ABC", "Aditya", "Harsh@gmail.com", "112233", 2000, LocalDate.parse("1999-08-15"), ServicePlan.GOLD);
-
         Customer[] customerArray = {c1, c2, c3, c4, c5,c6};
         List<Customer> customerList = new ArrayList<>();
         for (Customer c : customerArray)
