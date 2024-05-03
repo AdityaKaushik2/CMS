@@ -17,7 +17,7 @@ public class CustomerManagementSystem {
             List<Customer> accounts = populated();
             while (!exit) {
                 try {
-                    System.out.println("1.Enter User Details\n" + "2.Display AllUsers\n" + "3. To Login\n" + "4.To Unsubscribe\n" + "5. To Sort By Email\n" + "6. To Sort by DoB n Last Name\n" +"7. To Sort By Service Type\n" +"0.Exit");
+                    System.out.println("1.Enter User Details\n" + "2.Display AllUsers\n" + "3. To Login\n" + "4.To Unsubscribe\n" + "5. To Sort By Email\n" + "6. To Sort by DoB n Last Name\n" +"7. To Sort By Service Type\n8. Delete User Based on DOB and Service Type" +"0.Exit");
                     switch (sc.nextInt()) {
                         case 1:
                             System.out.println(
@@ -76,6 +76,7 @@ public class CustomerManagementSystem {
                         case 8:
                             System.out.println("Enter DOB and Plan");
                             delUser(sc.next(),sc.next(),accounts);
+                            System.out.println("Accounts Deleted Successfully");
                             break;
                         case 0:
                             exit = true;
