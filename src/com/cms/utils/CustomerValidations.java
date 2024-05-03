@@ -4,6 +4,7 @@ import com.cms.custom_exceptions.CustomerException;
 import com.cms.customer.Customer;
 import com.cms.customer.ServicePlan;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +12,10 @@ public class CustomerValidations {
     public static Customer validateAllInputs(String fname, String lname, String email, String password, double registrationAmount,
                                                     String dob, String Plan, List<Customer> accounts) throws CustomerException {
         checkDuplicate(email, accounts);
+        checkPassword(password);
         ServicePlan plan = parseAndValidateServicePlanAndCharges(Plan, registrationAmount);
         LocalDate birthDate = LocalDate.parse(dob);
+        checkAge(birthDate);
         return new Customer(fname, lname, email,  password, registrationAmount,
                 birthDate,  plan);
     }
@@ -23,7 +26,19 @@ public class CustomerValidations {
             throw new CustomerException("Duplicate email");
         }
     }
+    public static void checkPassword(String password) throws CustomerException{
+        String regex = "((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})";
+        if(password.matches(regex) == false)
+            throw new CustomerException("Enter Strong Password");
+    }
 
+    public static void checkAge(LocalDate dob) throws CustomerException{
+        LocalDate current = LocalDate.now();
+        Period age = Period.between(dob,current);
+
+        if(age.getYears() < 18)
+            throw new CustomerException("Age Must be above 18");
+    }
     public static ServicePlan parseAndValidateServicePlanAndCharges(String plan, double amount) throws CustomerException {
         ServicePlan planType =  ServicePlan.valueOf(plan.toUpperCase());
         if(planType.getPlanCharge() == amount)
