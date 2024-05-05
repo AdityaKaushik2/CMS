@@ -1,8 +1,7 @@
 package com.cms.customer;
-
 import java.time.LocalDate;
-public class Customer implements Comparable<Customer> {
-    private int customerid;
+
+public class Customer {
     private String fname;
     private String lname;
     private String email;
@@ -10,7 +9,6 @@ public class Customer implements Comparable<Customer> {
     private double registrationAmount;
     private LocalDate dob;
     private ServicePlan plan;
-    private static int idGeneration;
 
     public Customer(String fname, String lname, String email, String password, double registrationAmount,
                     LocalDate dob, ServicePlan plan) {
@@ -21,19 +19,21 @@ public class Customer implements Comparable<Customer> {
         this.registrationAmount = registrationAmount;
         this.dob = dob;
         this.plan = plan;
-        this.customerid = ++idGeneration;
     }
 
     //Primary Key Checking Constructor
-    public Customer(String email, LocalDate dob) {
+    public Customer(String email) {
         this.email = email;
-        this.dob= dob;
+    }
+
+    public Customer(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     @Override
     public String toString() {
         return
-                customerid + " " +
                 fname + " "+ lname  + " " +
                  email  + " " +
                  password  + " " +
@@ -50,20 +50,9 @@ public class Customer implements Comparable<Customer> {
             // CustomerAccount
             Customer c = (Customer) o;
             // invoker's object email = this.email
-            return this.email.equals(c.email) && this.getDob().equals(dob);
+            return this.email.equals(c.email);
         }
         return false;
-    }
-
-    @Override
-    public int compareTo(Customer o) {
-        if (this.email.compareTo(o.email) < 0) {
-            return -1;
-        }
-        if (this.email.compareTo(o.email) > 0) {
-            return 1;
-        }
-        return 0;
     }
 
     public String getFname() {
