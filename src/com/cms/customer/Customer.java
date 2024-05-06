@@ -1,5 +1,6 @@
 package com.cms.customer;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Customer {
     private String fname;
@@ -53,6 +54,11 @@ public class Customer {
             return this.email.equals(c.email);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(email);
     }
 
     public String getFname() {
