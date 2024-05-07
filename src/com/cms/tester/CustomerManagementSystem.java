@@ -24,6 +24,7 @@ public class CustomerManagementSystem {
                             5. To Sort By Email
                             6. To Sort by DoB n Last Name
                             7. To Sort By Service Type
+                            8. Looking For Commit
                             0.Exit""");
                     switch (sc.nextInt()) {
                         case 1:

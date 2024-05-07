@@ -58,7 +58,7 @@ public class Customer {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(email);
+        return Objects.hash(email);
     }
 
     public String getFname() {
